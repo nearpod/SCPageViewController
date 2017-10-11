@@ -717,6 +717,15 @@
 	}
 }
 
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+	if (@available(iOS 11.0, *)) {
+		if (ABS(scrollView.contentInset.top - scrollView.adjustedContentInset.top) > 0) {
+			[scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+		}
+	}
+}
+
 #pragma mark - SCPageViewControllerViewDelegate
 
 - (void)pageViewControllerViewWillChangeFrame:(SCPageViewControllerView *)pageViewControllerView
